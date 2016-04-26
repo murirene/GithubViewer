@@ -1,0 +1,18 @@
+/* Base Application Styles */
+body {
+  color: #000;
+  background: #fff;
+  margin-top: -40px;
+}
+
+.main-container {
+  display: flex;
+  justify-content: center;
+  flex-direction: column;
+  justify-content: center;
+}
+
+.header {
+  color: #FFFFFF;
+  background-color: #F56400;
+}

@@ -6,7 +6,7 @@ import { render } from 'react-dom';
 import { Provider } from 'react-redux';
 import configureStore from './stores';
 import App from './views/App';
-import WhackAMoleContainer from './containers/WhackAMole';
+import GitHubViewerContainer from './containers/GitHubViewer';
 
 const store = configureStore();
 
@@ -14,7 +14,7 @@ render(
   <Provider store={store}>
     <Router history={browserHistory}>
       <Route path="/" component={App}>
-        <IndexRoute component={WhackAMoleContainer} />
+        <IndexRoute component={GitHubViewerContainer} />
       </Route>
     </Router>
   </Provider>,
