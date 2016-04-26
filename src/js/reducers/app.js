@@ -15,13 +15,11 @@ const initialState = {
 
 export default function(state=initialState, action) {
     switch(action.type){
-    case ACTION_TYPES.REQ_ISSUES:
-        debugger;
+    case 'REQ_ISSUES':
         return Object.assign({}, state, {
             loading: action.loading
         })
-    case ACTION_TYPES.REC_ISSUES:
-        debugger;
+    case 'REC_ISSUES':
         return Object.assign({}, state, {
             loading: action.loading,
             issues: action.issues

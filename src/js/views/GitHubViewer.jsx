@@ -3,19 +3,24 @@ require('normalize.css/normalize.css');
 require('../styles/App.css');
 import React from 'react';
 import IssuesList from './IssuesList';
+import Spinner from '../components/Spinner';
 import consts from '../lib/constants';
 
-let WhackAMole = React.createClass({
+let GitHubViewer = React.createClass({
     componentWillMount() {
-        debugger;
         this.props.fetchIssues();
     },
     render() {
+        let spinner;
+        if(this.props.loading){
+            spinner = <Spinner />
+        }
         return (
             <div className="controlPanel">
+                {spinner}
                 <IssuesList {...this.props}/>
             </div>
         )}
 })
 
-export default WhackAMole;
+export default GitHubViewer;

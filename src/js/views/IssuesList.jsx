@@ -4,17 +4,17 @@ require('../styles/App.css');
 import React from 'react';
 import { PageHeader } from 'react-bootstrap';
 import consts from '../lib/constants';
-import Issue from '../components/Issues'
+import Issue from '../components/Issue'
 
 let IssuesList = React.createClass({
     render() {
         let issues;
-
+debugger;
         if(!this.props.issues.length){
             issues = <h1>No issues to show</h1>
         } else {
             issues =
-                <table class="table table-hover">
+                <table className="table table-hover">
                     <thead>
                     <tr>
                         <th className="issue-nbr">Issue #</th>
@@ -24,12 +24,14 @@ let IssuesList = React.createClass({
                         <th className="description">Description</th>
                     </tr>
                     </thead>
+                    <tbody>
                     {
                         this.props.issues.map( (issue, index) => {
-                                return (<Issue issue={issue} key={`ISSUE_${index}` }/>);
+                                return <Issue issue={issue} key={`ISSUE_${index}` }/>
                             }
                         )
                     }
+                    </tbody>
                     </table>
         }
 

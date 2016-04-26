@@ -1,26 +1,27 @@
 import ACTION_TYPES from './actionTypes';
-
-export function fetchIssues(page=1) {
-    return function (dispatch) {
-        dispatch(requestIssues());
-        return fetch('api.github.com/repos/npm/npm/issues',
-            {headers: {Accept: 'application/json'}})
-            .then(response => response.json())
-            .then(enterprises => dispatch(receivedIssues(issues)))
-    }
-}
+import fetch from 'isomorphic-fetch';
 
 export function requestIssues(){
     return {
-        type: ACTION_TYPES.REQ_ISSUES,
+        type: 'REQ_ISSUES',
         loading: true
     }
 }
 
 export function receivedIssues(issues){
     return {
-        type: ACTION_TYPES.REC_ISSUES,
+        type: 'REC_ISSUES',
         loading: true,
         issues
+    }
+}
+
+export function fetchIssues() {
+    return dispatch => {
+        dispatch(requestIssues());
+        return fetch('https://api.github.com/repos/npm/npm/issues',
+            {headers: {Accept: 'application/json'}})
+            .then(response => response.json())
+            .then(issues => dispatch(receivedIssues(issues)))
     }
 }

@@ -4,17 +4,16 @@ import consts from '../lib/constants';
 
 let Issue = React.createClass({
     render() {
+        debugger;
         return (
-            <div>
                 <tr>
-                    <td className="issue-nbr">{this.props.issue}</td>
-                    <td className="title">{this.props.title}</td>
-                    <td className="username">{this.props.username}</td>
+                    <td className="issue-nbr">{this.props.issue.number}</td>
+                    <td className="title">{this.props.issue.title}</td>
+                    <td className="username">{this.props.issue.user.login}</td>
                     <td className="avatar">avatar
                     </td>
-                    <td className="description">{this.props.description}</td>
+                    <td className="description">{this.props.issue.body}</td>
                 </tr>
-            </div>
         )
     }
 })
