@@ -18,7 +18,6 @@ const mapDispatchToProps = (dispatch) => ({
         dispatch(fetchIssues());
     },
     nextPage: (page) => {
-        debugger;
         dispatch(nextPage(page));
     }
 });

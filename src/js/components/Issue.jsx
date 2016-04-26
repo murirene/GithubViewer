@@ -3,6 +3,47 @@ import React from 'react';
 import consts from '../lib/constants';
 
 let Issue = React.createClass({
+    description: "",
+    componentWillMount() {
+        let description = '';
+        let description2 = '';
+
+        let words = this.props.issue.body.split(' ');
+
+        for(let word of words) {
+            debugger;
+            description = `${description.length? description + ' ' + word: word}`
+            if(description.length < 140) {
+                description2 = description;
+            }
+
+            if(description2 >= 140) {
+                break;
+            }
+        }
+
+        this.description = description2;
+    },
+    componentWillReceiveProps() {
+        let description = '';
+        let description2 = '';
+
+        let words = this.props.issue.body.split(' ');
+
+        for(let word of words) {
+            debugger;
+            description = `${description.length? description + ' ' + word: word}`
+            if(description.length < 140) {
+                description2 = description;
+            }
+
+            if(description2 >= 140) {
+                break;
+            }
+        }
+
+        this.description = description2;
+    },
     render() {
         return (
                 <tr>
@@ -11,7 +52,7 @@ let Issue = React.createClass({
                     <td className="username">{this.props.issue.user.login}</td>
                     <td className="avatar">avatar
                     </td>
-                    <td className="description">{this.props.issue.body}</td>
+                    <td className="description">{this.description}</td>
                 </tr>
         )
     }

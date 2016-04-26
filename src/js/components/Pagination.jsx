@@ -22,7 +22,6 @@ let Pagination = React.createClass({
     },
     render() {
         let l = this.getList(this.props.page);
-        debugger;
         return (
             <ul className="pagination">
                 {

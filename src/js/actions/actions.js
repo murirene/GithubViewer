@@ -25,7 +25,6 @@ export function saveLinks(links){
 }
 
 export function nextPage(page) {
-    debugger;
     return dispatch => {
         return fetch(`https://api.github.com/repos/npm/npm/issues?page=${page}&client_id=1dac84680e79cc1b9b1b&client_secret=811c2556aa4f95bed83761e38e7ab0dc2aadd851`,
             {headers: {Accept: 'application/json'}})
