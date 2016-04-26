@@ -17,8 +17,6 @@ body {
   background-color: #F56400;
 }
 
-
-
 #octo #cat { fill: #fff }
 #octo { position: fixed; height: 24%; width: 106%; top: 50%; }
 #octo .part {

@@ -4,7 +4,6 @@ import consts from '../lib/constants';
 
 let Issue = React.createClass({
     render() {
-        debugger;
         return (
                 <tr>
                     <td className="issue-nbr">{this.props.issue.number}</td>

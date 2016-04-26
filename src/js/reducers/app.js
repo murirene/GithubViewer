@@ -8,9 +8,11 @@ const initialState = {
     issues: [],
     loading: false,
     status: '',
-    pages: 0,
-    page: undefined,
-    viewIndex: undefined
+    pages: 1,
+    page: 1,
+    viewIndex: undefined,
+    next: '',
+    undefined: ''
 }
 
 export default function(state=initialState, action) {
@@ -22,8 +24,16 @@ export default function(state=initialState, action) {
     case 'REC_ISSUES':
         return Object.assign({}, state, {
             loading: action.loading,
-            issues: action.issues
+            issues: action.issues,
+            page: parseInt(action.page)
         })
+    case 'SAVE_LINKS':
+        let next = action.links.split(';')[0];
+        let last = action.links.split(';')[1].split(',')[1];
+        let page = parseInt(next.split('=')[1].replace('>', '')) - 1;
+        let pages = parseInt(last.split('=')[1].replace('>', ''));
+
+        return Object.assign({}, state, { next, last, page, pages });
     default:
         return state;
     }

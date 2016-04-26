@@ -15,6 +15,7 @@ let GitHubViewer = React.createClass({
         if(this.props.loading){
             spinner = <Spinner />
         }
+
         return (
             <div className="controlPanel">
                 {spinner}

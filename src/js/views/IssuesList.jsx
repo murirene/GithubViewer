@@ -4,12 +4,13 @@ require('../styles/App.css');
 import React from 'react';
 import { PageHeader } from 'react-bootstrap';
 import consts from '../lib/constants';
-import Issue from '../components/Issue'
-
+import Issue from '../components/Issue';
+import Pagination from '../components/Pagination';
 let IssuesList = React.createClass({
     render() {
         let issues;
-debugger;
+        let pagination;
+
         if(!this.props.issues.length){
             issues = <h1>No issues to show</h1>
         } else {
@@ -33,6 +34,8 @@ debugger;
                     }
                     </tbody>
                     </table>
+            pagination = <Pagination onClick={this.props.nextPage} pages={this.props.pages}
+                                     page={this.props.page} next={this.props.next} last={this.props.last} />
         }
 
         return (
@@ -43,6 +46,7 @@ debugger;
                 <div className='main-container'>
                     <div className="issue-list">
                         {issues}
+                        {pagination}
                     </div>
                 </div>
             </div>
