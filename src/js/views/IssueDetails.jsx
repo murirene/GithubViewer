@@ -17,8 +17,7 @@ let IssueDetails = React.createClass({
                            type="text" value="" placeholder="Labels" readonly={true} />
                 <TextInput className="cname" labelClassName="lcname" cssId="" label="Reporter's Username"
                            type="text" value={this.props.issue.user.login} placeholder="Reporter's Username" readonly={true} />
-                <TextInput className="cname" labelClassName="lcname" cssId="" label="Reporter's Avatar"
-                           type="text" value="" placeholder="Reporter's Avatar" readonly={true} />
+                <img src={this.props.issue.user.avatar_url} height="42" width="42" />
                 <textarea className="form-control" rows="3" readOnly={true} value={this.props.issue.body}></textarea>
                 <button onClick={e => this.props.onClick()} type="button" className="btn btn-primary">Back</button>
             </div>

@@ -51,7 +51,7 @@ let Issue = React.createClass({
                     <td className="issue-nbr">{this.props.issue.number}</td>
                     <td className="title">{this.props.issue.title}</td>
                     <td className="username">{this.props.issue.user.login}</td>
-                    <td className="avatar">avatar
+                    <td className="avatar"><img src={this.props.issue.user.avatar_url} height="42" width="42" />
                     </td>
                     <td className="description">{this.description}</td>
                 </tr>
