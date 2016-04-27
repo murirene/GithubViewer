@@ -12,20 +12,39 @@ const initialState = {
     page: 1,
     viewIndex: undefined,
     next: '',
-    undefined: ''
+    undefined: '',
+    view: 'list',
+    issue: { user: {} }
 }
 
 export default function(state=initialState, action) {
     switch(action.type){
     case 'REQ_ISSUES':
         return Object.assign({}, state, {
-            loading: action.loading
+            loading: action.loading,
+            view: action.view
         })
     case 'REC_ISSUES':
         return Object.assign({}, state, {
             loading: action.loading,
             issues: action.issues,
-            page: parseInt(action.page)
+            page: parseInt(action.page),
+            view: action.view
+        })
+    case 'REQ_ISSUE':
+        return Object.assign({}, state, {
+            loading: action.loading,
+            view: action.view
+        })
+    case 'REC_ISSUE':
+        return Object.assign({}, state, {
+            loading: action.loading,
+            view: action.view,
+            issue: action.issue
+        })
+    case 'SHOW_LIST':
+        return Object.assign({}, state, {
+            view: action.view
         })
     case 'SAVE_LINKS':
         let next = action.links.split(';')[0];

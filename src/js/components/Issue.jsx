@@ -46,7 +46,8 @@ let Issue = React.createClass({
     },
     render() {
         return (
-                <tr>
+                <tr data-number={this.props.issue.number}
+                    onClick={ e => this.props.onClick(e.currentTarget.getAttribute('data-number'))}>
                     <td className="issue-nbr">{this.props.issue.number}</td>
                     <td className="title">{this.props.issue.title}</td>
                     <td className="username">{this.props.issue.user.login}</td>

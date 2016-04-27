@@ -2,7 +2,6 @@
 require('normalize.css/normalize.css');
 require('../styles/App.css');
 import React from 'react';
-import { PageHeader } from 'react-bootstrap';
 import consts from '../lib/constants';
 import Issue from '../components/Issue';
 import Pagination from '../components/Pagination';
@@ -11,7 +10,7 @@ let IssuesList = React.createClass({
         let issues;
         let pagination;
 
-        if(!this.props.issues.length){
+        if (!this.props.issues.length) {
             issues = <h1>No issues to show</h1>
         } else {
             issues =
@@ -27,28 +26,21 @@ let IssuesList = React.createClass({
                     </thead>
                     <tbody>
                     {
-                        this.props.issues.map( (issue, index) => {
-                                return <Issue issue={issue} key={`ISSUE_${index}` }/>
+                        this.props.issues.map((issue, index) => {
+                                return <Issue issue={issue} key={`ISSUE_${index}` } onClick={this.props.fetchIssue}/>
                             }
                         )
                     }
                     </tbody>
-                    </table>
+                </table>
             pagination = <Pagination onClick={this.props.nextPage} pages={this.props.pages}
-                                     page={this.props.page} next={this.props.next} last={this.props.last} />
+                                     page={this.props.page} next={this.props.next} last={this.props.last}/>
         }
 
         return (
-            <div className='index'>
-                <div className="header">
-                    <PageHeader >Github Viewer</PageHeader>
-                </div>
-                <div className='main-container'>
-                    <div className="issue-list">
-                        {issues}
-                        {pagination}
-                    </div>
-                </div>
+            <div className="issue-list">
+                {issues}
+                {pagination}
             </div>
         )
     }
