@@ -14,7 +14,7 @@ const initialState = {
     next: '',
     undefined: '',
     view: 'list',
-    issue: { user: {} }
+    issue: { user: {}, labels: []}
 }
 
 export default function(state=initialState, action) {

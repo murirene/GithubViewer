@@ -20,6 +20,7 @@ let IssuesList = React.createClass({
                         <th className="issue-nbr">Issue #</th>
                         <th className="title">Title</th>
                         <th className="username">Username</th>
+                        <th className="labels">Labels</th>
                         <th className="avatar">Avatar</th>
                         <th className="description">Description</th>
                     </tr>

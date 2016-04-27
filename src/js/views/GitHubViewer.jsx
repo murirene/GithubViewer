@@ -19,7 +19,7 @@ let GitHubViewer = React.createClass({
         if (this.props.loading) {
             spinner = <Spinner />
         }
-        debugger;
+
         if (this.props.view === 'list') {
             view = <IssuesList {...this.props}/>
         } else {
