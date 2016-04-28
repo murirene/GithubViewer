@@ -42,15 +42,15 @@ let Issue = React.createClass({
                 <div className=" section2">
                     <div className="title">{this.props.issue.title}</div>
                     <div className="flex-row">
-                        <div className="issue-number">{this.props.issue.number}</div>
+                        <div className="issue-number">{`#${this.props.issue.number}`}</div>
                         <div className="labels">{
                             this.props.issue.labels.map((label) => {
                                 let divStyle = {
-                                    color: 'white',
+                                    color: label.name == 'review'? 'white': 'dark grey',
                                     font: 'bold',
                                     backgroundColor: `#${label.color}`
                                 };
-                                return <span key={`LABEL_${label.name}`} style={divStyle}>{label.name}</span>
+                                return <span><span key={`LABEL_${label.name}`} style={divStyle}>{label.name} </span>&nbsp;</span>
                             })
                         }
                         </div>
