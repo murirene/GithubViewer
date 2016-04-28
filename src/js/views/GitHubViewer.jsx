@@ -17,9 +17,8 @@ let GitHubViewer = React.createClass({
         let users = description.match(/@\w+/g);
         let runner = '';
         let list = [];
-
         if(!users){
-            list.push(<span>{description}</span>)
+            list.push(<span key={`element${list.length}`}>{description}</span>)
             return list;
         }
 
@@ -32,9 +31,9 @@ let GitHubViewer = React.createClass({
         for(let word of description.split(' ')) {
             if(userSet.has(word)){
                 if(runner.length){
-                  list.push(<span>{runner}&nbsp;</span>);
+                  list.push(<span key={`element${list.length}`}>{runner}&nbsp;</span>);
                 }
-                list.push(<a href="http://www.w3schools.com/html/">{word}</a>)
+                list.push(<a key={`element${list.length}`} href="http://www.w3schools.com/html/">{word}</a>)
                 runner = '';
             } else {
                 runner = runner + ' ' + word;
@@ -42,8 +41,7 @@ let GitHubViewer = React.createClass({
         }
 
         if(runner.length){
-            debugger;
-            list.push(<span>{runner}&nbsp;</span>);
+            list.push(<span key={`element${list.length}`}>{runner}&nbsp;</span>);
         }
 
         return list

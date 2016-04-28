@@ -5,7 +5,45 @@ body {
   margin-top: -40px;
 }
 
+.title-header {
+
+}
+
+.state-header {
+
+}
+
 .main-container {
+
+}
+
+.section-x {
+
+}
+
+.detail-container {
+  display: flex;
+  flex-direction: column;
+  margin: 20px;
+  flex-wrap: wrap;
+}
+
+.action-section {
+
+}
+
+.comment {
+  display: flex;
+  flex-direction: row;
+  margin-bottom: 10px;
+}
+
+.comment-section {
+
+}
+
+.full-description {
+
 }
 
 .list-container {

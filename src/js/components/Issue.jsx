@@ -50,7 +50,7 @@ let Issue = React.createClass({
                                     font: 'bold',
                                     backgroundColor: `#${label.color}`
                                 };
-                                return <span><span key={`LABEL_${label.name}`} style={divStyle}>{label.name} </span>&nbsp;</span>
+                                return <span key={`LABEL_${label.name}`}><span style={divStyle}>{label.name} </span>&nbsp;</span>
                             })
                         }
                         </div>

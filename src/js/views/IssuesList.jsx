@@ -16,8 +16,8 @@ let IssuesList = React.createClass({
             issues = <div className="list-container">
                     {
                         this.props.issues.map((issue, index) => {
-                                return <Issue processDescription={this.props.processDescription}
-                                              issue={issue} key={`ISSUE_${index}` } onClick={this.props.fetchIssue}/>
+                                return <Issue key={`ISSUE_${index}`} processDescription={this.props.processDescription}
+                                              issue={issue} onClick={this.props.fetchIssue}/>
                             }
                         )
                     }
