@@ -3,7 +3,6 @@ import fetch from 'isomorphic-fetch';
 import constants from '../lib/constants';
 
 export function requestIssues(){
-    debugger;
     return {
         type: ACTION_TYPES.REQ_ISSUES,
         loading: true,
@@ -68,7 +67,7 @@ export function saveLinks(links){
 
 export function nextPage(page) {
     return dispatch => {
-        return fetch(`https://api.github.com/repos/npm/npm/issues?page=${page}`,
+        return fetch(`https://api.github.com/repos/npm/npm/issues?page=${page}&client_id=1dac84680e79cc1b9b1b&client_secret=811c2556aa4f95bed83761e38e7ab0dc2aadd851`,
             {headers: {Accept: 'application/json'}})
             .then(response => response.json())
             .then(issues => dispatch(receivedIssues(issues, page)))
@@ -78,7 +77,7 @@ export function nextPage(page) {
 export function fetchIssue(number) {
     return dispatch => {
         dispatch(requestIssue());
-        return fetch(`https://api.github.com/repos/npm/npm/issues/${number}`,
+        return fetch(`https://api.github.com/repos/npm/npm/issues/${number}?client_id=1dac84680e79cc1b9b1b&client_secret=811c2556aa4f95bed83761e38e7ab0dc2aadd851`,
             {headers: {Accept: 'application/json'}})
             .then(response => response.json())
             .then(issue => {
@@ -104,7 +103,7 @@ export function fetchComment(url) {
 export function fetchIssues(page=1) {
     return dispatch => {
         dispatch(requestIssues(page));
-        return fetch(`https://api.github.com/repos/npm/npm/issues?page=${page}`,
+        return fetch(`https://api.github.com/repos/npm/npm/issues?page=${page}&client_id=1dac84680e79cc1b9b1b&client_secret=811c2556aa4f95bed83761e38e7ab0dc2aadd851`,
             {headers: {Accept: 'application/json'}})
             .then(response => {
                 dispatch(saveLinks(response.headers.get('Link') ))

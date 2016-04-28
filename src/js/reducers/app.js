@@ -14,7 +14,6 @@ const initialState = {
 }
 
 export default function(state=initialState, action) {
-    debugger;
     switch(action.type){
     case ACTION_TYPES.REQ_ISSUES:
         return Object.assign({}, state, {
