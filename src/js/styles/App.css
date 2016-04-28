@@ -6,10 +6,73 @@ body {
 }
 
 .main-container {
+}
+
+.list-container {
   display: flex;
-  justify-content: center;
   flex-direction: column;
-  justify-content: center;
+  margin: 20px;
+  cursor: pointer;
+}
+
+.issue-row:hover {
+  background-color: lightgrey;
+}
+
+.flex-column {
+  flex-direction: column;
+  display: flex;
+}
+
+.flex-row {
+  flex-direction: row;
+  display: flex;
+}
+
+.flex1 {
+}
+
+.section1 {
+
+}
+
+.section2 {
+
+}
+
+.section3 {
+
+}
+
+.avatar {
+
+}
+
+
+.username {
+  margin: auto;
+  padding: 4px;
+  width: 120px;
+}
+
+.title {
+  width: 370px;
+  padding: 5px;
+}
+
+.issue-number {
+  width: 50px;
+  padding: 5px;
+}
+
+.labels {
+  width: 200px;
+  padding: 5px;
+}
+
+.description {
+  width: 100%;
+  padding: 5px;
 }
 
 .header {

@@ -4,7 +4,7 @@ import consts from '../lib/constants';
 
 let Issue = React.createClass({
     description: [],
-    componentWillMount() {
+    truncateDescription() {
         let description = '';
         let description2 = '';
 
@@ -24,59 +24,45 @@ let Issue = React.createClass({
         if(description2) {
             this.description = this.props.processDescription(description2);
         }
-        debugger;
+    },
+    componentWillMount() {
+        this.truncateDescription();
     },
     componentWillReceiveProps() {
-        let description = '';
-        let description2 = '';
-
-        let words = this.props.issue.body.split(' ');
-
-        for(let word of words) {
-            description = `${description.length? description + ' ' + word: word}`
-            if(description.length < 140) {
-                description2 = description;
-            }
-
-            if(description2 >= 140) {
-                break;
-            }
-        }
-
-        if(description2) {
-            this.description = this.props.processDescription(description2);
-        }
-        debugger;
+        this.truncateDescription();
     },
     render() {
-        debugger;
         return (
-                <tr data-number={this.props.issue.number}
-                    onClick={ e => this.props.onClick(e.currentTarget.getAttribute('data-number'))}>
-                    <td className="issue-nbr">{this.props.issue.number}</td>
-                    <td className="title">{this.props.issue.title}</td>
-                    <td className="labels">{
-                        this.props.issue.labels.map((label) => {
-                            let divStyle = {
-                                color: 'white',
-                                font: 'bold',
-                                backgroundColor: `#${label.color}`
-                            };
-                        return <span key={`LABEL_${label.name}`} style={divStyle}>{label.name}</span>
-                    })
-                    }</td>
-                    <td className="username">{this.props.issue.user.login}</td>
-                    <td className="avatar"><img src={this.props.issue.user.avatar_url} height="42" width="42" />
-                    </td>
-                    <td className="description">
-                        <div>
-                            { this.description.map( (element) => {
-                                return element;
-                            })}
+            <div className='flex-row issue-row' data-number={this.props.issue.number}
+                 onClick={ e => this.props.onClick(e.currentTarget.getAttribute('data-number'))}>
+                <div className=" section1">
+                    <div className="avatar"><img src={this.props.issue.user.avatar_url} height="42" width="42" /></div>
+                    <div className="username">{this.props.issue.user.login}</div>
+                </div>
+                <div className=" section2">
+                    <div className="title">{this.props.issue.title}</div>
+                    <div className="flex-row">
+                        <div className="issue-number">{this.props.issue.number}</div>
+                        <div className="labels">{
+                            this.props.issue.labels.map((label) => {
+                                let divStyle = {
+                                    color: 'white',
+                                    font: 'bold',
+                                    backgroundColor: `#${label.color}`
+                                };
+                                return <span key={`LABEL_${label.name}`} style={divStyle}>{label.name}</span>
+                            })
+                        }
                         </div>
-                    </td>
-                </tr>
-        )
+                    </div>
+                </div>
+                <div className="description section3">
+                    { this.description.map( (element) => {
+                        return element;
+                    })}
+                </div>
+            </div>
+            )
     }
 })
 

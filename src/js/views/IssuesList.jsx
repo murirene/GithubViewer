@@ -13,19 +13,7 @@ let IssuesList = React.createClass({
         if (!this.props.issues.length) {
             issues = <h1>No issues to show</h1>
         } else {
-            issues =
-                <table className="table table-hover">
-                    <thead>
-                    <tr>
-                        <th className="issue-nbr">Issue #</th>
-                        <th className="title">Title</th>
-                        <th className="username">Username</th>
-                        <th className="labels">Labels</th>
-                        <th className="avatar">Avatar</th>
-                        <th className="description">Description</th>
-                    </tr>
-                    </thead>
-                    <tbody>
+            issues = <div className="list-container">
                     {
                         this.props.issues.map((issue, index) => {
                                 return <Issue processDescription={this.props.processDescription}
@@ -33,8 +21,7 @@ let IssuesList = React.createClass({
                             }
                         )
                     }
-                    </tbody>
-                </table>
+                    </div>
             pagination = <Pagination onClick={this.props.nextPage} pages={this.props.pages}
                                      page={this.props.page} next={this.props.next} last={this.props.last}/>
         }
