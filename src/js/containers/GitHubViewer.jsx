@@ -1,5 +1,3 @@
-/* React Container binds the Component to the store. */
-
 import { connect } from 'react-redux';
 import { fetchIssues, nextPage, fetchIssue, showList, requestComments, receivedComments } from '../actions/actions';
 import GitHubViewer from '../views/GitHubViewer';

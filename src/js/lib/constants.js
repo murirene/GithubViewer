@@ -1,4 +1,7 @@
-/* Application constants */
 export default {
+    VIEWS: {
+        LIST: 'list',
+        DETAIL: 'detail'
+    }
 }
 

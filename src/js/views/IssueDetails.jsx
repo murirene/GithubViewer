@@ -2,53 +2,46 @@
 require('normalize.css/normalize.css');
 require('../styles/App.css');
 import React from 'react';
-import consts from '../lib/constants';
 import Comment from '../components/Comment';
-
+import consts from '../lib/constants';
+import Labels from '../components/Labels';
 let IssueDetails = React.createClass({
     render() {
-        let p = [];
-        if(this.props.issue.body) {
-            p = this.props.processDescription(this.props.issue.body);
+        let fullDescription = [];
+        if (this.props.issue.body) {
+            fullDescription = this.props.transformHtml(this.props.issue.body);
         }
 
         return (
             <div className="detail-container">
-                <h2 className="title-header">{this.props.issue.title}</h2>
-                <div className="section-x">
-                    <div className="section1">
-                        <div className="avatar"><img src={this.props.issue.user.avatar_url} height="42" width="42" /></div>
+                <h2>{this.props.issue.title}</h2>
+                <div>
+                    <div>
+                        <div><img src={this.props.issue.user.avatar_url} height="42" width="42"/></div>
                         <div className="username">{this.props.issue.user.login}</div>
                     </div>
-                    <div className="labels">{
-                        this.props.issue.labels.map((label) => {
-                            let divStyle = {
-                                color: label.name == 'review'? 'white': 'dark grey',
-                                font: 'bold',
-                                backgroundColor: `#${label.color}`
-                            };
-                            return <span key={`LABEL_${label.name}`}><span style={divStyle}>{label.name} </span>&nbsp;</span>
-                        })
-                    }
-                    </div>
+                    <Labels labels={this.props.issue.labels} />
                 </div>
-                <h5 className="state-header">{this.props.issue.state}</h5>
+                <h5>{this.props.issue.state}</h5>
                 <div className="jumbotron">
-                <div className="full-description">
-                        { p.map( (element) => {
+                    <div>
+                        { fullDescription.map((element) => {
                             return element;
                         })}
-                    </div></div>
-                <div className="comment-section">
-                {this.props.comments.map(comment => {
-                    return <Comment key={`COMMENT_${comment.id}`}comment={comment} processDescription={this.props.processDescription}/>
-                })}
+                    </div>
                 </div>
-                <div className="action-section">
+                <div>
+                    {this.props.comments.map(comment => {
+                        return <Comment key={`COMMENT_${comment.id}`} comment={comment}
+                                        transformHtml={this.props.transformHtml}/>
+                    })}
+                </div>
+                <div>
                     <button onClick={e => this.props.onClick()} type="button" className="btn btn-primary">Back</button>
                 </div>
             </div>
-        )}
+        )
+    }
 })
 
 export default IssueDetails;
