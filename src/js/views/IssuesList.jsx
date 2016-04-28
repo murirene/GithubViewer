@@ -28,7 +28,8 @@ let IssuesList = React.createClass({
                     <tbody>
                     {
                         this.props.issues.map((issue, index) => {
-                                return <Issue issue={issue} key={`ISSUE_${index}` } onClick={this.props.fetchIssue}/>
+                                return <Issue processDescription={this.props.processDescription}
+                                              issue={issue} key={`ISSUE_${index}` } onClick={this.props.fetchIssue}/>
                             }
                         )
                     }

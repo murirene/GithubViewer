@@ -7,10 +7,46 @@ import IssueDetails from './IssueDetails';
 import Spinner from '../components/Spinner';
 import consts from '../lib/constants';
 import { PageHeader } from 'react-bootstrap';
+import _ from 'lodash';
 
 let GitHubViewer = React.createClass({
     componentWillMount() {
         this.props.fetchIssues();
+    },
+    processDescription: (description) => {
+        let users = description.match(/@\w+/g);
+        let runner = '';
+        let list = [];
+
+        if(!users){
+            list.push(<span>{description}</span>)
+            return list;
+        }
+
+        let userSet = new Set();
+
+        for(let user of users){
+            userSet.add(user);
+        }
+
+        for(let word of description.split(' ')) {
+            if(userSet.has(word)){
+                if(runner.length){
+                  list.push(<span>{runner}&nbsp;</span>);
+                }
+                list.push(<a href="http://www.w3schools.com/html/">{word}</a>)
+                runner = '';
+            } else {
+                runner = runner + ' ' + word;
+            }
+        }
+
+        if(runner.length){
+            debugger;
+            list.push(<span>{runner}&nbsp;</span>);
+        }
+
+        return list
     },
     render() {
         let spinner;
@@ -21,9 +57,9 @@ let GitHubViewer = React.createClass({
         }
 
         if (this.props.view === 'list') {
-            view = <IssuesList {...this.props}/>
+            view = <IssuesList {...this.props} processDescription={this.processDescription} />
         } else {
-            view = <IssueDetails {...this.props} onClick={this.props.showList}/>
+            view = <IssueDetails {...this.props} onClick={this.props.showList} processDescription={this.processDescription} />
         }
 
         return (

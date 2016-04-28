@@ -1,7 +1,7 @@
 /* React Container binds the Component to the store. */
 
 import { connect } from 'react-redux';
-import { fetchIssues, nextPage, fetchIssue, showList } from '../actions/actions';
+import { fetchIssues, nextPage, fetchIssue, showList, requestComments, receivedComments } from '../actions/actions';
 import GitHubViewer from '../views/GitHubViewer';
 
 const mapStateToProps = (state) => ({
@@ -12,7 +12,8 @@ const mapStateToProps = (state) => ({
     page: state.appReducer.page,
     last: state.appReducer.last,
     next: state.appReducer.next,
-    view: state.appReducer.view
+    view: state.appReducer.view,
+    comments: state.appReducer.comments
 });
 
 const mapDispatchToProps = (dispatch) => ({
@@ -27,6 +28,12 @@ const mapDispatchToProps = (dispatch) => ({
     },
     showList: () => {
         dispatch(showList());
+    },
+    requestComments: () => {
+        dispatch(requestComments());
+    },
+    receivedComments: (comments) => {
+        dispatch(receivedComments(comments));
     }
 });
 

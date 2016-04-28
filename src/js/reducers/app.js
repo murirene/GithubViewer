@@ -14,6 +14,7 @@ const initialState = {
     next: '',
     undefined: '',
     view: 'list',
+    comments: [],
     issue: { user: {}, labels: []}
 }
 
@@ -34,13 +35,22 @@ export default function(state=initialState, action) {
     case 'REQ_ISSUE':
         return Object.assign({}, state, {
             loading: action.loading,
-            view: action.view
+            view: action.view,
+            comments: action.comments
         })
     case 'REC_ISSUE':
         return Object.assign({}, state, {
             loading: action.loading,
             view: action.view,
             issue: action.issue
+        })
+    case 'REQ_COMMENTS':
+        return Object.assign({}, state, {
+            comments: action.comments
+        })
+    case 'REC_COMMENTS':
+        return Object.assign({}, state, {
+            comments: action.comments
         })
     case 'SHOW_LIST':
         return Object.assign({}, state, {

@@ -3,7 +3,7 @@ import React from 'react';
 import consts from '../lib/constants';
 
 let Issue = React.createClass({
-    description: "",
+    description: [],
     componentWillMount() {
         let description = '';
         let description2 = '';
@@ -21,7 +21,10 @@ let Issue = React.createClass({
             }
         }
 
-        this.description = description2;
+        if(description2) {
+            this.description = this.props.processDescription(description2);
+        }
+        debugger;
     },
     componentWillReceiveProps() {
         let description = '';
@@ -40,9 +43,13 @@ let Issue = React.createClass({
             }
         }
 
-        this.description = description2;
+        if(description2) {
+            this.description = this.props.processDescription(description2);
+        }
+        debugger;
     },
     render() {
+        debugger;
         return (
                 <tr data-number={this.props.issue.number}
                     onClick={ e => this.props.onClick(e.currentTarget.getAttribute('data-number'))}>
@@ -50,19 +57,24 @@ let Issue = React.createClass({
                     <td className="title">{this.props.issue.title}</td>
                     <td className="labels">{
                         this.props.issue.labels.map((label) => {
-                            debugger;
                             let divStyle = {
                                 color: 'white',
                                 font: 'bold',
                                 backgroundColor: `#${label.color}`
                             };
-                        return <span style={divStyle}>{label.name}</span>
+                        return <span key={`LABEL_${label.name}`} style={divStyle}>{label.name}</span>
                     })
                     }</td>
                     <td className="username">{this.props.issue.user.login}</td>
                     <td className="avatar"><img src={this.props.issue.user.avatar_url} height="42" width="42" />
                     </td>
-                    <td className="description">{this.description}</td>
+                    <td className="description">
+                        <div>
+                            { this.description.map( (element) => {
+                                return element;
+                            })}
+                        </div>
+                    </td>
                 </tr>
         )
     }

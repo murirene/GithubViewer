@@ -15,11 +15,25 @@ export function showList(){
         view: 'list'
     }
 }
-
 export function requestIssue(){
+        return {
+            type: 'REQ_ISSUE',
+            loading: true,
+            comments: []
+        }
+}
+
+export function requestComments(){
     return {
-        type: 'REQ_ISSUE',
-        loading: true
+        type: 'REQ_COMMENTS',
+        comments: []
+    }
+}
+
+export function receivedComments(comments){
+    return {
+        type: 'REC_COMMENTS',
+        comments
     }
 }
 
@@ -65,7 +79,23 @@ export function fetchIssue(number) {
         return fetch(`https://api.github.com/repos/npm/npm/issues/${number}?client_id=1dac84680e79cc1b9b1b&client_secret=811c2556aa4f95bed83761e38e7ab0dc2aadd851`,
             {headers: {Accept: 'application/json'}})
             .then(response => response.json())
-            .then(issue => dispatch(receivedIssue(issue)))
+            .then(issue => {
+                if(issue.comments > 0) {
+                    dispatch(fetchComment(issue.comments_url))
+                }
+                dispatch(receivedIssue(issue))
+            })
+    }
+}
+
+export function fetchComment(url) {
+    return dispatch => {
+        dispatch(requestComments());
+        return fetch(`${url}`,
+            {headers: {Accept: 'application/json'}})
+            .then(response => response.json())
+            .then(comments => dispatch(receivedComments(comments))
+            )
     }
 }
 
