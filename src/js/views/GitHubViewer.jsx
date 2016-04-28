@@ -33,7 +33,7 @@ let GitHubViewer = React.createClass({
                 if(runner.length){
                   list.push(<span key={`element${list.length}`}>{runner}&nbsp;</span>);
                 }
-                list.push(<a key={`element${list.length}`} href="http://www.w3schools.com/html/">{word}</a>)
+                list.push(<a key={`element${list.length}`} href={`https://github.com/${word.replace('@', '')}`}>{word}</a>)
                 runner = '';
             } else {
                 runner = runner + ' ' + word;
