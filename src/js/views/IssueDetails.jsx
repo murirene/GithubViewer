@@ -7,6 +7,10 @@ import Comment from '../components/Comment';
 
 let IssueDetails = React.createClass({
     render() {
+        let p = [];
+        if(this.props.issue.body) {
+            p = this.props.processDescription(this.props.issue.body);
+        }
 
         return (
             <div className="detail-container">
@@ -31,9 +35,10 @@ let IssueDetails = React.createClass({
                 <h5 className="state-header">{this.props.issue.state}</h5>
                 <div className="jumbotron">
                 <div className="full-description">
-                    <p>{this.props.issue.body}</p>
-                </div>
-                </div>
+                        { p.map( (element) => {
+                            return element;
+                        })}
+                    </div></div>
                 <div className="comment-section">
                 {this.props.comments.map(comment => {
                     return <Comment key={`COMMENT_${comment.id}`}comment={comment} processDescription={this.props.processDescription}/>
