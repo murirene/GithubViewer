@@ -1,4 +1,4 @@
-/* Jest Tests for validating the React Labels. The View component of the Redux
+/* Jest Tests for validating the React Pagination. The View component of the Redux
  * unidirectional flow */
 
 jest.dontMock('../../src/js/components/Pagination').default;
