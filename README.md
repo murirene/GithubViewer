@@ -6,6 +6,10 @@ npm: 3.7.3
 *URL:
 http://localhost:3000
 
+*Github:
+clone the project using Git
+git clone https://github.com/murirene/GithubViewer.git
+
 *Dependency Installation
 Inside of the directory run the following command to install the dependencies:
 npm install
@@ -17,7 +21,11 @@ npm run build
 npm test
 
 
-Design:
+Design: 
+My design for the presentation embraced a self explanatory organization. I wanted the sections to not require any 
+labeling. A user would comprehend the elements being presented. Asynchronous requests are made for items like 
+comments. This allows the user to view the immediately available Issue, while the comments are fetched. 
+
 I used Redux/React to implement the Github Viewer.
 The Redux/React is a unidirectional flow that makes developing a web application easy and predictable.
 [Actions] -> [Reducer] -> [Store] -> [View (React)] -> [Actions]
@@ -38,6 +46,17 @@ Jest.js also provides the code coverage.
 Nightwatch.js is very easy to use for rapid Functional test development.
 I used Chrome Development Tools and WebStorm IDE.
 The application was developed on my Mac Pro.
+
+How it works:
+The src/js/views/GitHubViewer.jsx loads when the public/index.html is served from the node server (server.js). When the 
+Component mounts an async action is dispatched for fetching the issues via the Github API. The GitHubViewer then mounts the 
+ IssuesList.jsx component. Before an Issue is rendered, the /src/js/IssuesList.jsx truncateDescription function will 
+ truncate the size of the description to 140. The /src/js/GitHubViewer.jsx transformHtml function will translate the 
+ description into React Elements with the Login names as Html Links. When an Issue is clicked, then the issue details
+  are fetched and /src/js/views/IssueDetails.jsx component is mounted. The Comments are fetched at this time. When 
+  the Back button is pressed, then the IssuesList.jsx is mounted again. Actions submitted to the reducer function retuns a new state, in 
+ which the Components on the page get updated via the props that are injected.  
+
 
 Below are the components
 Actions: Objects with at least a type attribute that applies changes to the state via the reducer.
